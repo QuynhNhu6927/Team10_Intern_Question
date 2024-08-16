@@ -1,9 +1,11 @@
 import React from "react";
+import Header from "../components/Header";
 
 export default function HomePage() {
     return (
-        <div style={{ color: 'black' }}> 
-            This is HomePage 
+        <div> 
+        <Header/>
+            
         </div>
     );
 }
