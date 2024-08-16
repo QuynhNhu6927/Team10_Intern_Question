@@ -15,13 +15,15 @@
     background-color: #BDE3FF ;
     width: 100px;
     height: 50px;
-    border: 2px solid #1e4f73;
+    border: 2px solid #7DACCE;
     border-radius: 10px;
     transition: opacity 0.3s, visibility 0.3s;
 }
 
 .addquestion-button button:hover{
     background-color: #7DACCE;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s, visibility 0.3s;
 }
 
 .addquestion-box{
