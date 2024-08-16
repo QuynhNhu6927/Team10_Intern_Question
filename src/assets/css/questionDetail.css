@@ -31,3 +31,23 @@
 .question-button .selected{
     background-color: #7DACCE;
 }
+.answer-box{
+    padding: 30px 20px 20px 20px;
+    height: 500px;
+    border: 17px solid #BDE3FF; 
+}
+.answer-item{
+    margin-bottom: 20px;
+}
+.answer-content{
+    border: 5px solid #BDE3FF;
+    min-height: 150px;
+    padding: 10px;
+}
+.space{
+    margin: 0 20px;
+}
+.Pagination{
+    display: flex; 
+    justify-content: center;
+}
