@@ -1,0 +1,50 @@
+.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    border: none;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Remove the default caret (arrow) */
+.dropdown-toggle::after {
+    display: none;
+}
+
+/* Optional: Style for the dropdown menu */
+.dropdown-menu {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: Transition effect for the dropdown menu */
+.dropdown-menu-enter {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.dropdown-menu-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.dropdown-menu-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.dropdown-menu-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 300ms, transform 300ms;
+}
