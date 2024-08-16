@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import "../assets/css/HomePage.css";
 
 export default function HomePage() {
@@ -16,88 +16,46 @@ export default function HomePage() {
                 <div className="items-Question">
 
                     <Row>
-                        <Col xl='2' className="cards" style={{backgroundColor: getRandomColor()}}>
+                        <Col xl='2' sm="5" xs='10' className="cards" style={{backgroundColor: getRandomColor()}}>
                             <Row className="title">
                                 <Col >
                                     <p>Question 1</p>
                                 </Col>
                             </Row>
-                            <Row>
-                                <Col xl='5'>
+                            <Row className="card-footer">
+                                <Col xl='6' sm='6' xs='6'>
                                     <p>Như Nguyên</p>
                                 </Col>
-                                <Col xl='1'>|</Col>
-                                <Col xl='6'>ngày tháng năm</Col>
+                                <Col>|</Col>
+                                <Col xl='4' sm='4' xs='4'>dd/mm/yy</Col>
                             </Row>
                         </Col>
-                        <Col xl='2' className="cards" style={{backgroundColor: getRandomColor()}}>
+                        <Col xl='2' sm="5" xs='10' className="cards" style={{backgroundColor: getRandomColor()}}>
                             <Row className="title">
                                 <Col >
                                     <p>Question 1</p>
                                 </Col>
                             </Row>
-                            <Row>
-                                <Col xl='5'>
+                            <Row className="card-footer">
+                                <Col xl='6' sm='6' xs='6'>
                                     <p>Như Nguyên</p>
                                 </Col>
-                                <Col xl='1'>|</Col>
-                                <Col xl='6'>ngày tháng năm</Col>
+                                <Col>|</Col>
+                                <Col xl='4' sm='4' xs='4'>dd/mm/yy</Col>
                             </Row>
                         </Col>
-                        <Col xl='2' className="cards" style={{backgroundColor: getRandomColor()}}>
+                        <Col xl='2' sm="5" xs='10' className="cards" style={{backgroundColor: getRandomColor()}}>
                             <Row className="title">
                                 <Col >
                                     <p>Question 1</p>
                                 </Col>
                             </Row>
-                            <Row>
-                                <Col xl='5'>
+                            <Row className="card-footer">
+                                <Col xl='6' sm='6' xs='6'>
                                     <p>Như Nguyên</p>
                                 </Col>
-                                <Col xl='1'>|</Col>
-                                <Col xl='6'>ngày tháng năm</Col>
-                            </Row>
-                        </Col>
-                        <Col xl='2' className="cards" style={{backgroundColor: getRandomColor()}}>
-                            <Row className="title">
-                                <Col >
-                                    <p>Question 1</p>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xl='5'>
-                                    <p>Như Nguyên</p>
-                                </Col>
-                                <Col xl='1'>|</Col>
-                                <Col xl='6'>ngày tháng năm</Col>
-                            </Row>
-                        </Col>
-                        <Col xl='2' className="cards" style={{backgroundColor: getRandomColor()}}>
-                            <Row className="title">
-                                <Col >
-                                    <p>Question 1</p>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xl='5'>
-                                    <p>Như Nguyên</p>
-                                </Col>
-                                <Col xl='1'>|</Col>
-                                <Col xl='6'>ngày tháng năm</Col>
-                            </Row>
-                        </Col>
-                        <Col xl='2' className="cards" style={{backgroundColor: getRandomColor()}}>
-                            <Row className="title">
-                                <Col >
-                                    <p>Question 1</p>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xl='5'>
-                                    <p>Như Nguyên</p>
-                                </Col>
-                                <Col xl='1'>|</Col>
-                                <Col xl='6'>ngày tháng năm</Col>
+                                <Col>|</Col>
+                                <Col xl='4' sm='4' xs='4'>dd/mm/yy</Col>
                             </Row>
                         </Col>
                     </Row>
