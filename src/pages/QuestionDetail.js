@@ -67,7 +67,7 @@ export default function QuestionDetail() {
 
                 {selectedButton === "question" && (
                     <div className="question-box">
-                        <div className="question-title">Title</div>
+                        <div className="question-title" style={{fontWeight:'bold'}}>Title</div>
                         <div className="question-title">Intern | Date</div>
                         <div className="question-text-amount">text amount</div>
                         <div className="question-content">content</div>

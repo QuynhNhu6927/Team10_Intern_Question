@@ -1,50 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import { Link, useNavigate } from "react-router-dom";
-import { CSSTransition } from "react-transition-group";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import "../assets/css/dropdown.css";
-import { routes } from "../routes";
 
 export default function DropdownMenu() {
-  const [showMenu, setShowMenu] = useState(false);
-  const navigate = useNavigate();
-
-  const handleProfileClick = () => {
-  };
-
   return (
-    <Dropdown
-      onToggle={() => setShowMenu((prevShowMenu) => !prevShowMenu)}
-      show={showMenu}>
-      <Dropdown.Toggle id="dropdown-basic">
-        <i className="fa-solid fa-user"></i>
+    <Dropdown className="custom-dropdown">
+      <Dropdown.Toggle as="div" id="dropdown-custom-components" className="dropdown-toggle-custom">
+        {/* User Icon */}
+        <div className="avatar-circle">
+          <FontAwesomeIcon icon={faUser} className="user-icon" />
+        </div>
       </Dropdown.Toggle>
 
-      <CSSTransition
-        in={showMenu}
-        timeout={300}
-        classNames="dropdown-menu"
-        unmountOnExit>
-        <Dropdown.Menu className="dropdown-menu">
-          <Link
-            onClick={handleProfileClick}
-            style={{
-              textDecoration: "none",
-              width: "inherit",
-              color: "black",
-            }}>
-            <Dropdown.Item>UserName</Dropdown.Item>
-          </Link>
-
-          <Link
-            style={{
-              textDecoration: "none",
-              color: "black",
-            }}>
-            <Dropdown.Item>Logout</Dropdown.Item>
-          </Link>
-        </Dropdown.Menu>
-      </CSSTransition>
+      <Dropdown.Menu align="end" className="dropdown-menu-custom">
+        <Dropdown.Item as={Link} to="/profile">Username</Dropdown.Item>
+        <Dropdown.Item as={Link} to="/logout">Logout</Dropdown.Item>
+      </Dropdown.Menu>
     </Dropdown>
   );
 }
