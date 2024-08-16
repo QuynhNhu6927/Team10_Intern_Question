@@ -1,0 +1,37 @@
+.btn-fn{
+    text-align: center;
+    /* padding: 0px 0px; */
+}
+
+.btn-fn button{
+    margin: 0 30px;
+    padding: 0 20px;
+    background-color: #BDE3FF;
+    font-size: 20px;
+    margin-top: 50px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.btn-fn button:hover{
+    background-color: #a3cfee;
+}
+.items-Question{
+    margin-top: 50px;
+    border: 17px solid #BDE3FF; 
+    min-height: 500px;
+    padding: 20px;
+}
+.cards{
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-left: 50px;
+    margin-bottom: 50px;
+    cursor: pointer;
+
+}
+.cards .title{
+    min-height: 240px;
+
+}
