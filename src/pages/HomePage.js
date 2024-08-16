@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import { Col, Row } from "react-bootstrap";
 import "../assets/css/HomePage.css";
+import Footer from "../components/Footer";
 
 export default function HomePage() {
     return (
@@ -63,6 +64,8 @@ export default function HomePage() {
                 </div>
 
             </div>
+
+            <Footer/>
                 
         </div>
     );

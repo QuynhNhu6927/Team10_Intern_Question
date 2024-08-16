@@ -4,6 +4,7 @@ import { routes } from ".";
 import { ToastContainer } from "react-toastify";
 
 import HomePage from "../pages/HomePage"
+import QuestionDetail from "../pages/QuestionDetail";
 
 //cmt
 const ScrollToTop = () => {
@@ -24,6 +25,7 @@ export default function AppRoute() {
             <Routes>
                 
                 <Route path={routes.homePage} element={<HomePage />} />
+                <Route path={routes.questionDetail} element={<QuestionDetail />} />
             </Routes>
         </>
     );
