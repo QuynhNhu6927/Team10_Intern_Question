@@ -9,7 +9,7 @@
 }
 
 .question-button button{
-    margin-right: 30px;
+    margin-right: 20px;
     background-color: #BDE3FF ;
     width: 100px;
     height: 50px;
@@ -22,12 +22,53 @@
     background-color: #7DACCE;
     transition: opacity 0.3s, visibility 0.3s;
 }
-.question-box{
+.question-box,
+.answer-box{
     padding: 30px 0 20px 20px;
-    height: 500px;
     border: 17px solid #BDE3FF; 
 }
 
-.question-button .selected{
+.question-button .selected,
+.answer-box .selected{
     background-color: #7DACCE;
+}
+
+.answer{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px 30px 0;
+}
+
+.answer-detail{
+    border-bottom: 3px solid #BDE3FF;
+    padding: 0 20px 30px 0;
+    margin-top: 7px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-button {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    border-radius: 50%;
+    border: 1px solid #BDE3FF;
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-button.active {
+    background-color: #BDE3FF;
+}
+
+.pagination-button:hover {
+    background-color: #BDE3FF;
 }
