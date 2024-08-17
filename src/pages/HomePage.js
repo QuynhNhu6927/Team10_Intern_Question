@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { Col, Row } from "react-bootstrap";
 import "../assets/css/HomePage.css";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
     return (
@@ -11,8 +12,8 @@ export default function HomePage() {
 
             <div> 
                 <div className="btn-fn">
-                    <button >Add Question</button>
-                    <button >My Question</button>
+                    <Link to="/add-question"><button >Add Question</button></Link>
+                    <Link to="/question-detail"><button >Question Detail</button></Link>
                 </div>
                 <div className="items-Question">
 
@@ -33,7 +34,7 @@ export default function HomePage() {
                         </Col>
                         <Col xl='2' sm="5" xs='10' className="cards" style={{backgroundColor: getRandomColor()}}>
                             <Row className="title">
-                                <Col >
+                                <Col>
                                     <p>Question 1</p>
                                 </Col>
                             </Row>

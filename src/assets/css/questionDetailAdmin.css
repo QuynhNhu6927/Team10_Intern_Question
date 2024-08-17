@@ -1,0 +1,38 @@
+.delete {
+    margin-left: auto;
+}
+.answer-add{
+    margin-top: 7px;
+}
+.answer-add-box{
+    padding: 0px 20px 20px 20px;
+    border-bottom: 10px solid #BDE3FF; 
+    text-align: right;
+}
+.question-box{
+    padding: 30px 20px 20px 20px;
+}
+.answer-add-button{
+    margin-left: auto;
+    margin-top: 10px;
+    background-color: #BDE3FF ;
+    width: 150px;
+    height: 30px;
+    border: 2px solid #7DACCE;
+    border-radius: 10px;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.answer-add-button:hover{
+    background-color: #7DACCE;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.answer-note-input{
+    width: 100%;
+    height: 100px;
+    border: 3px solid #BDE3FF;
+    border-radius: 10px;
+    padding: 10px 20px 20px 10px;
+    margin-top: 7px;
+}
+
