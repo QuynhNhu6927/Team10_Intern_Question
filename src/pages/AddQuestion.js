@@ -1,31 +1,56 @@
 import { routes } from "../routes";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useRef, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../assets/css/addQuestion.css";
 
 export default function AddQuestion() {
+
+    const titleInputRef = useRef(null);
+
+    useEffect(() => {
+        if (titleInputRef.current) {
+            titleInputRef.current.focus();
+        }
+    }, []);
+
     return (
         <div>
             <Header />
             <div className="question-detail">
 
                 <div className="addquestion-box">
-                    <div className="question-title">Title</div>
-                    <div className="question-title">Intern | Date</div>
-                    <div className="question-text-amount">text amount</div>
-                    <div className="question-content">content</div>
+                    <div className="addquestion-title">
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            ref={titleInputRef}
+                        />
+                    </div>
+
+                    <div className="question-note">
+                        Intern | Date
+                    </div>
+
+                    <div className="addquestion-content">
+                        <textarea
+                            placeholder="Your question here"
+                        />
+                    </div>
                 </div>
+
                 <div className="addquestion-button">
                     <button>
                         Add
                     </button>
-                    <button >
-                        <Link to={routes.homePage}>
+
+                    <Link to={routes.homePage}>
+                        <button >
                             Cancel
-                        </Link>
-                    </button>
+                        </button>
+                    </Link>
+
                 </div>
 
             </div>

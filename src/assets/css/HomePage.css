@@ -1,3 +1,8 @@
+.home-page{
+    padding: 50px 30px 70px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+}
+
 .btn-fn{
     text-align: center;
     /* padding: 0px 0px; */
@@ -13,9 +18,12 @@
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
+    transition: opacity 0.3s, visibility 0.3s;
 }
 .btn-fn button:hover{
-    background-color: #a3cfee;
+    background-color: #7DACCE;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s, visibility 0.3s;
 }
 .items-Question{
     margin-top: 50px;
