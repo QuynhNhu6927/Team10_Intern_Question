@@ -69,10 +69,24 @@ export default function QuestionDetail() {
 
                 {selectedButton === "question" && (
                     <div className="question-box">
-                        <div className="question-title" style={{fontWeight:'bold'}}>Title</div>
-                        <div className="question-title">Intern | Date</div>
-                        <div className="question-text-amount">text amount</div>
-                        <div className="question-content">content</div>
+                        <div className="question-title">
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            readOnly
+                        />
+                    </div>
+
+                    <div className="question-note">
+                        Intern | Date
+                    </div>
+
+                    <div className="question-content">
+                        <textarea
+                            placeholder="Your question here"
+                            readOnly
+                        />
+                    </div>
                     </div>
                 )}
 

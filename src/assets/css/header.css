@@ -16,6 +16,7 @@
 
 .company-logo {
   flex: 1 1 100%;
+  min-width: 180px;
   text-align: center;
 }
 
@@ -37,6 +38,7 @@
   padding: 10px 40px 10px 10px;
   border-radius: 20px;
   border: none;
+  outline: none;
 }
 
 .search-icon {

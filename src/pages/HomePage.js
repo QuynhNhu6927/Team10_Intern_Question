@@ -7,21 +7,23 @@ import { Link } from "react-router-dom";
 
 export default function HomePage() {
     return (
-        <div> 
-            <Header/>
+        <div>
+            <Header />
 
-            <div> 
+            <div className="home-page">
                 <div className="btn-fn">
                     <Link to="/add-question"><button >Add Question</button></Link>
-                    <Link to="/question-detail"><button >Question Detail</button></Link>
+                    <Link to="#"><button >My Questions</button></Link>
                 </div>
                 <div className="items-Question">
 
                     <Row>
-                        <Col xl='2' sm="5" xs='10' className="cards" style={{backgroundColor: getRandomColor()}}>
+                        <Col xl='2' sm="5" xs='10' className="cards" style={{ backgroundColor: getRandomColor() }}>
                             <Row className="title">
                                 <Col >
-                                    <p>Question 1</p>
+                                    <Link to="/question-detail">
+                                        <p>Question 1</p>
+                                    </Link>
                                 </Col>
                             </Row>
                             <Row className="card-footer">
@@ -31,8 +33,9 @@ export default function HomePage() {
                                 <Col>|</Col>
                                 <Col xl='4' sm='4' xs='4'>dd/mm/yy</Col>
                             </Row>
+
                         </Col>
-                        <Col xl='2' sm="5" xs='10' className="cards" style={{backgroundColor: getRandomColor()}}>
+                        <Col xl='2' sm="5" xs='10' className="cards" style={{ backgroundColor: getRandomColor() }}>
                             <Row className="title">
                                 <Col>
                                     <p>Question 1</p>
@@ -46,7 +49,7 @@ export default function HomePage() {
                                 <Col xl='4' sm='4' xs='4'>dd/mm/yy</Col>
                             </Row>
                         </Col>
-                        <Col xl='2' sm="5" xs='10' className="cards" style={{backgroundColor: getRandomColor()}}>
+                        <Col xl='2' sm="5" xs='10' className="cards" style={{ backgroundColor: getRandomColor() }}>
                             <Row className="title">
                                 <Col >
                                     <p>Question 1</p>
@@ -66,8 +69,8 @@ export default function HomePage() {
 
             </div>
 
-            <Footer/>
-                
+            <Footer />
+
         </div>
     );
 

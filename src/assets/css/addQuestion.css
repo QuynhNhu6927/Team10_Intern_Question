@@ -1,5 +1,6 @@
 .addquestion-button{
     display: flex;
+    align-items: center;
     justify-content: flex-end;
     padding: 0 0 15px 17px;
     background-color: #BDE3FF ;
@@ -27,7 +28,48 @@
 }
 
 .addquestion-box{
-    height: 400px;
-    padding: 30px 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 450px;
+    padding: 30px 20px 20px 20px;
     border: 17px solid #BDE3FF; 
+    box-sizing: border-box;
+}
+
+.addquestion-title {
+    font-size: larger;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+.addquestion-title input{
+    font-weight: bold;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.question-note{
+    margin-bottom: 20px;
+    padding-left: 5px;
+}
+
+.addquestion-content{
+    flex: 1; 
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.addquestion-content textarea {
+    flex: 1; 
+    border: 2px solid #7DACCE;
+    outline: #7DACCE;
+    border-radius: 10px;
+    width: 100%;
+    resize: none;
+    box-sizing: border-box;
+    overflow-y: auto;
+    font-size: 16px;
+    padding: 10px;
 }
