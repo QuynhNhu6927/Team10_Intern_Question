@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import HomePage from "../pages/HomePage"
 import QuestionDetail from "../pages/QuestionDetail";
 import AddQuestion from "../pages/AddQuestion";
+import QuestionDetailAdmin from "../pages/QuestionDetailAdmin";
 
 //cmt
 const ScrollToTop = () => {
@@ -28,6 +29,7 @@ export default function AppRoute() {
                 <Route path={routes.homePage} element={<HomePage />} />
                 <Route path={routes.questionDetail} element={<QuestionDetail />} />
                 <Route path={routes.addQuestion} element={<AddQuestion />} />
+                <Route path={routes.addQuestionAdmin} element={<QuestionDetailAdmin />} />
             </Routes>
         </>
     );

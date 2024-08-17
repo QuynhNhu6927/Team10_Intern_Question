@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../assets/css/questionDetail.css";
+import "../assets/css/questionDetailAdmin.css"
 
-export default function QuestionDetail() {
+export default function QuestionDetailAdmin() {
     const [selectedButton, setSelectedButton] = useState("question");
     const [currentPage, setCurrentPage] = useState(1);
     const answersPerPage = 10;
@@ -65,6 +66,12 @@ export default function QuestionDetail() {
                     >
                         Answer
                     </button>
+                    <button
+                        className="delete"
+                        
+                    >
+                        Delete
+                    </button>
                 </div>
 
                 {selectedButton === "question" && (
@@ -76,8 +83,18 @@ export default function QuestionDetail() {
                     </div>
                 )}
 
-                {selectedButton === "answer" && (
+                {selectedButton === "answer" && ( 
                     <div className="answer-box">
+                        <div className="answer-add-box">
+                            <div className="answer-add">
+                                <input
+                                    type="textarea"
+                                    placeholder="type your answer here"
+                                    className="answer-note-input"
+                                />
+                            </div>
+                            <button className="answer-add-button">Add Answer</button>
+                        </div>
                         {currentAnswers.map((answer, index) => (
                             <div className="answer" key={index}>
                                 <div className="answer-note">{answer.note}</div>
