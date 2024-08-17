@@ -1,0 +1,33 @@
+.addquestion-button{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 0 15px 17px;
+    background-color: #BDE3FF ;
+}
+
+.addquestion-button a{
+    text-decoration: none;
+    color: black;
+}
+
+.addquestion-button button{
+    margin-right: 20px;
+    background-color: #BDE3FF ;
+    width: 100px;
+    height: 50px;
+    border: 2px solid #7DACCE;
+    border-radius: 10px;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.addquestion-button button:hover{
+    background-color: #7DACCE;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.addquestion-box{
+    height: 400px;
+    padding: 30px 0 20px 20px;
+    border: 17px solid #BDE3FF; 
+}

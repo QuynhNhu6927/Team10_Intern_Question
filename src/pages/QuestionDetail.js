@@ -6,36 +6,43 @@ import { Col, Pagination, Row } from "react-bootstrap";
 
 export default function QuestionDetail() {
     const [selectedButton, setSelectedButton] = useState("question");
-
     const [currentPage, setCurrentPage] = useState(1);
+    const answersPerPage = 10;
 
-
-    const data = [
-        {
-            id: 1,
-            user: "Tân",
-            content: "Content 1",
-            date: "16/08/2024",
-        },
-        {
-            id: 2,
-            user: "Sơn",
-            content: "Content 2",
-            date: "16/08/2024",
-        },
-        {
-            id: 3,
-            user: "Như",
-            content: "Content 3",
-            date: "16/08/2024",
-        },
-        {
-            id: 4,
-            user: "Mần",
-            content: "Content 4",
-            date: "16/08/2024",
-        },
+    const answers = [
+        { note: "Admin | Date", detail: "I do not know" },
+        { note: "Admin | Date", detail: "Very well" },
+        { note: "Admin | Date", detail: "I will ask another person" },
+        { note: "Admin | Date", detail: "I will ask another person" },
+        { note: "Admin | Date", detail: "I will ask another person" },
+        { note: "Admin | Date", detail: "I will ask another person" },
+        { note: "Admin | Date", detail: "I will ask another person" },
+        { note: "Admin | Date", detail: "I will ask another person" },
+        { note: "Admin | Date", detail: "I will ask another person" },
+        { note: "Admin | Date", detail: "I will ask another person" },
+        { note: "Admin | Date", detail: "I will ask another person" },
+        { note: "Admin | Date", detail: "I will ask another person" },
+        { note: "Admin | Date", detail: "Very well" },
+        { note: "Admin | Date", detail: "Very well" },
+        { note: "Admin | Date", detail: "Very well" },
+        { note: "Admin | Date", detail: "Very well" },
+        { note: "Admin | Date", detail: "Very well" },
+        { note: "Admin | Date", detail: "I do not know" },
+        { note: "Admin | Date", detail: "I do not know" },
+        { note: "Admin | Date", detail: "I do not know" },
+        { note: "Admin | Date", detail: "I do not know" },
+        { note: "Admin | Date", detail: "I do not know" },
+        { note: "Admin | Date", detail: "I do not know" },
+        { note: "Admin | Date", detail: "I do not know" },
     ];
+
+    const totalPages = Math.ceil(answers.length / answersPerPage);
+
+    const currentAnswers = answers.slice(
+        (currentPage - 1) * answersPerPage,
+        currentPage * answersPerPage
+    );
+
 
     const itemsPerPage = 2;
     const pageCount = Math.ceil(data.length / itemsPerPage);
@@ -48,7 +55,6 @@ export default function QuestionDetail() {
         <div>
             <Header />
             <div className="question-detail">
-
                 <div className="question-button">
                     <button
                         className={selectedButton === "question" ? "selected" : ""}
@@ -63,40 +69,36 @@ export default function QuestionDetail() {
                         Answer
                     </button>
                 </div>
-            {selectedButton === "question" && (
-                <div className="question-box">
-                    <div className="question-title">Title</div>
-                    <div className="question-title">Intern | Date</div>
-                    <div className="question-text-amount">text amount</div>
-                    <div className="question-content">content</div>
-                </div>
-            )}
-              {selectedButton === "answer" && (
+
+                {selectedButton === "question" && (
+                    <div className="question-box">
+                        <div className="question-title" style={{fontWeight:'bold'}}>Title</div>
+                        <div className="question-title">Intern | Date</div>
+                        <div className="question-text-amount">text amount</div>
+                        <div className="question-content">content</div>
+                    </div>
+                )}
+
+                {selectedButton === "answer" && (
                     <div className="answer-box">
-                        {data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item, index) => (
-                            <Row key={index}>
-                                <Col xl="12" sm="12" xs="12" className="answer-item">
-                                    <span>{item.user} </span>
-                                    <span className="space">|</span>
-                                    <span>{item.date}</span> 
-                                    <div className="answer-content">
-                                        <p>{item.content}</p>
-                                    </div>
-                                </Col>
-                            </Row>
+                        {currentAnswers.map((answer, index) => (
+                            <div className="answer" key={index}>
+                                <div className="answer-note">{answer.note}</div>
+                                <div className="answer-detail">{answer.detail}</div>
+                            </div>
                         ))}
-                        <div className="Pagination">
-                        <Pagination>
-                            {Array.from({ length: pageCount }, (_, index) => (
-                                <Pagination.Item
+                        <div className="pagination">
+                            {Array.from({ length: totalPages }, (_, index) => (
+                                <button
                                     key={index + 1}
-                                    active={index + 1 === currentPage}
+                                    className={`pagination-button ${
+                                        currentPage === index + 1 ? "active" : ""
+                                    }`}
                                     onClick={() => handlePageChange(index + 1)}
                                 >
                                     {index + 1}
-                                </Pagination.Item>
+                                </button>
                             ))}
-                        </Pagination>
                         </div>
                     </div>
                 )}
