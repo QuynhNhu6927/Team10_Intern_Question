@@ -19,49 +19,49 @@ export default function HomePage() {
 
                     <Row>
                         <Col xl='2' sm="5" xs='10' className="cards" style={{ backgroundColor: getRandomColor() }}>
-                            <Row className="title">
-                                <Col >
-                                    <Link to="/question-detail">
-                                        <p>Question 1</p>
-                                    </Link>
-                                </Col>
-                            </Row>
-                            <Row className="card-footer">
-                                <Col xl='6' sm='6' xs='6'>
-                                    <p>Như Nguyên</p>
-                                </Col>
-                                <Col>|</Col>
-                                <Col xl='4' sm='4' xs='4'>dd/mm/yy</Col>
-                            </Row>
-
+                            <Link to="/question-detail">
+                                <Row className="title">
+                                    <Col >
+                                            <p>Question 1</p>
+                                    </Col>
+                                </Row>
+                                <Row className="card-footer">
+                                    <Col xl='6' sm='6' xs='6'>
+                                        <p>Như Nguyên</p>
+                                    </Col>
+                                    <Col xl='6' sm='6' xs='6' className="date"><p>dd/mm/yyyy</p></Col>
+                                </Row>
+                            </Link>
                         </Col>
                         <Col xl='2' sm="5" xs='10' className="cards" style={{ backgroundColor: getRandomColor() }}>
-                            <Row className="title">
-                                <Col>
-                                    <p>Question 1</p>
-                                </Col>
-                            </Row>
-                            <Row className="card-footer">
-                                <Col xl='6' sm='6' xs='6'>
-                                    <p>Như Nguyên</p>
-                                </Col>
-                                <Col>|</Col>
-                                <Col xl='4' sm='4' xs='4'>dd/mm/yy</Col>
-                            </Row>
+                            <Link to="/question-detail">
+                                    <Row className="title">
+                                        <Col >
+                                                <p>Question 1</p>
+                                        </Col>
+                                    </Row>
+                                    <Row className="card-footer">
+                                        <Col xl='6' sm='6' xs='6'>
+                                            <p>Như Nguyên</p>
+                                        </Col>
+                                        <Col xl='6' sm='6' xs='6' className="date"><p>dd/mm/yyyy</p></Col>
+                                    </Row>
+                            </Link>
                         </Col>
                         <Col xl='2' sm="5" xs='10' className="cards" style={{ backgroundColor: getRandomColor() }}>
-                            <Row className="title">
-                                <Col >
-                                    <p>Question 1</p>
-                                </Col>
-                            </Row>
-                            <Row className="card-footer">
-                                <Col xl='6' sm='6' xs='6'>
-                                    <p>Như Nguyên</p>
-                                </Col>
-                                <Col>|</Col>
-                                <Col xl='4' sm='4' xs='4'>dd/mm/yy</Col>
-                            </Row>
+                            <Link to="/question-detail">
+                                    <Row className="title">
+                                        <Col >
+                                                <p>Question 1</p>
+                                        </Col>
+                                    </Row>
+                                    <Row className="card-footer">
+                                        <Col xl='6' sm='6' xs='6'>
+                                            <p>Như Nguyên</p>
+                                        </Col>
+                                        <Col xl='6' sm='6' xs='6' className="date"><p>dd/mm/yyyy</p></Col>
+                                    </Row>
+                                </Link>
                         </Col>
                     </Row>
 

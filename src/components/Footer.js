@@ -1,4 +1,31 @@
+import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+
 export default function Footer() {
+    const [showButton, setShowButton] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 90) {
+                setShowButton(true);
+            } else {
+                setShowButton(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    const handleScrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+
     return (
         <footer 
         style={{ 
@@ -18,6 +45,22 @@ export default function Footer() {
                     © 2023 Amazing Tech. All Rights Reserved.
                 </div>
             </div>
+            <div 
+            style={{
+                position: 'fixed',
+                right: '50px',
+                bottom: '80px',
+                fontSize: '30px',
+                backgroundColor: '#7DACCE',
+                height: '50px',
+                width: '50px',
+                borderRadius: '50%',
+                display: showButton ? 'flex' : 'none',
+                justifyContent: 'center',
+                alignItems: 'center',
+                cursor: 'pointer'
+            }}
+            ><FontAwesomeIcon icon={faAngleUp} onClick={handleScrollToTop} ></FontAwesomeIcon></div>
         </footer>
     );
 }
