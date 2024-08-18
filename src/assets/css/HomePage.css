@@ -30,6 +30,8 @@
     border: 17px solid #BDE3FF; 
     min-height: 500px;
     padding: 20px;
+    text-align: center;
+    
 }
 .cards{
     border-radius: 7px;
@@ -51,4 +53,21 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+}
+p{
+    color: black;
+}
+a{
+    
+    text-decoration: none;
+}
+.date{
+    text-align: right;
+}
+@media (max-width: 430px) {
+    .cards {
+        margin-left: 0px;
+        margin: auto;
+        margin-bottom: 50px;
+    }
 }
