@@ -19,8 +19,8 @@ export default function HomePage() {
 
                     <Row>
                         <Col xl='2' sm="5" xs='10' className="cards" style={{ backgroundColor: getRandomColor() }}>
-                            <Link to="/question-detail">
-                                <Row className="title">
+                            <Link to="/question-detail" style={{ textDecoration: 'none' }}>
+                                <Row className="title" >
                                     <Col >
                                             <p>Question 1</p>
                                     </Col>
@@ -34,7 +34,7 @@ export default function HomePage() {
                             </Link>
                         </Col>
                         <Col xl='2' sm="5" xs='10' className="cards" style={{ backgroundColor: getRandomColor() }}>
-                            <Link to="/question-detail">
+                            <Link to="/question-detail" style={{ textDecoration: 'none' }}>
                                     <Row className="title">
                                         <Col >
                                                 <p>Question 1</p>
@@ -49,7 +49,7 @@ export default function HomePage() {
                             </Link>
                         </Col>
                         <Col xl='2' sm="5" xs='10' className="cards" style={{ backgroundColor: getRandomColor() }}>
-                            <Link to="/question-detail">
+                            <Link to="/question-detail" style={{ textDecoration: 'none' }}>
                                     <Row className="title">
                                         <Col >
                                                 <p>Question 1</p>
