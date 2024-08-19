@@ -1,3 +1,5 @@
+import { routes } from "../routes";
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -59,36 +61,40 @@ export default function QuestionDetail() {
                     >
                         Question
                     </button>
+
                     <button
                         className={selectedButton === "answer" ? "selected" : ""}
                         onClick={() => setSelectedButton("answer")}
                     >
                         Answer
                     </button>
+
                 </div>
 
                 {selectedButton === "question" && (
                     <div className="question-box">
                         <div className="question-title">
-                        <input
-                            type="text"
-                            placeholder="Title"
-                            readOnly
-                        />
-                    </div>
+                            <input
+                                type="text"
+                                placeholder="Title"
+                                readOnly
+                            />
+                        </div>
 
-                    <div className="question-note">
-                        Intern | Date
-                    </div>
+                        <div className="question-note">
+                            Intern | Date
+                        </div>
 
-                    <div className="question-content">
-                        <textarea
-                            placeholder="Your question here"
-                            readOnly
-                        />
-                    </div>
+                        <div className="question-content">
+                            <textarea
+                                placeholder="Question here"
+                                readOnly
+                            />
+                        </div>
                     </div>
                 )}
+
+
 
                 {selectedButton === "answer" && (
                     <div className="answer-box">
@@ -102,9 +108,8 @@ export default function QuestionDetail() {
                             {Array.from({ length: totalPages }, (_, index) => (
                                 <button
                                     key={index + 1}
-                                    className={`pagination-button ${
-                                        currentPage === index + 1 ? "active" : ""
-                                    }`}
+                                    className={`pagination-button ${currentPage === index + 1 ? "active" : ""
+                                        }`}
                                     onClick={() => handlePageChange(index + 1)}
                                 >
                                     {index + 1}
@@ -113,6 +118,21 @@ export default function QuestionDetail() {
                         </div>
                     </div>
                 )}
+                <div className="update-question-button">
+                    <button>
+                        Save
+                    </button>
+
+                    <button>
+                        Delete
+                    </button>
+
+                    <Link to={routes.homePage}>
+                        <button >
+                            Cancel
+                        </button>
+                    </Link>
+                </div>
             </div>
             <Footer />
         </div>

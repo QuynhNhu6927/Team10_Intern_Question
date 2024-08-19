@@ -53,7 +53,7 @@ export default function QuestionDetailAdmin() {
         <div>
             <Header />
             <div className="question-detail">
-                <div className="question-button">
+                <div className="admin-question-button">
                     <button
                         className={selectedButton === "question" ? "selected" : ""}
                         onClick={() => setSelectedButton("question")}
@@ -66,29 +66,38 @@ export default function QuestionDetailAdmin() {
                     >
                         Answer
                     </button>
-                    <button
-                        className="delete"
-                        
-                    >
-                        Delete
-                    </button>
                 </div>
 
                 {selectedButton === "question" && (
                     <div className="question-box">
-                        <div className="question-title" style={{fontWeight:'bold'}}>Title</div>
-                        <div className="question-title">Intern | Date</div>
-                        <div className="question-text-amount">text amount</div>
-                        <div className="question-content">content</div>
+                        <div className="question-title">
+                            <input
+                                type="text"
+                                placeholder="Title"
+                                readOnly
+                            />
+                        </div>
+
+                        <div className="question-note">
+                            Intern | Date
+                        </div>
+
+                        <div className="question-content">
+                            <textarea
+                                placeholder="Question here"
+                                readOnly
+                            />
+                        </div>
                     </div>
                 )}
 
-                {selectedButton === "answer" && ( 
+
+                {selectedButton === "answer" && (
                     <div className="answer-box">
                         <div className="answer-add-box">
                             <div className="answer-add">
-                                <input
-                                    type="textarea"
+                                <textarea
+
                                     placeholder="type your answer here"
                                     className="answer-note-input"
                                 />
@@ -105,9 +114,8 @@ export default function QuestionDetailAdmin() {
                             {Array.from({ length: totalPages }, (_, index) => (
                                 <button
                                     key={index + 1}
-                                    className={`pagination-button ${
-                                        currentPage === index + 1 ? "active" : ""
-                                    }`}
+                                    className={`pagination-button ${currentPage === index + 1 ? "active" : ""
+                                        }`}
                                     onClick={() => handlePageChange(index + 1)}
                                 >
                                     {index + 1}
@@ -116,6 +124,11 @@ export default function QuestionDetailAdmin() {
                         </div>
                     </div>
                 )}
+                <div className="fix-admin-question-button">
+                    <button >
+                        Delete
+                    </button>
+                </div>
             </div>
             <Footer />
         </div>
