@@ -1,82 +1,101 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import { Col, Row } from "react-bootstrap";
 import "../assets/css/HomePage.css";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { GET_USER_QUESTION } from "../api/api";
 
 export default function HomePage() {
-    return (
-        <div>
-            <Header />
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState(""); // Thêm state để quản lý từ khóa tìm kiếm
 
-            <div className="home-page">
-                <div className="btn-fn">
-                    <Link to="/add-question"><button >Add Question</button></Link>
-                    <Link to="#"><button >My Questions</button></Link>
-                </div>
-                <div className="items-Question">
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem("selectedUser"));
+    setSelectedUser(user);
+  }, []);
 
-                    <Row>
-                        <Col xl='2' sm="5" xs='10' className="cards" style={{ backgroundColor: getRandomColor() }}>
-                            <Link to="/question-detail" style={{ textDecoration: 'none' }}>
-                                <Row className="title" >
-                                    <Col >
-                                            <p>Question 1</p>
-                                    </Col>
-                                </Row>
-                                <Row className="card-footer">
-                                    <Col xl='6' sm='6' xs='6'>
-                                        <p>Như Nguyên</p>
-                                    </Col>
-                                    <Col xl='6' sm='6' xs='6' className="date"><p>dd/mm/yyyy</p></Col>
-                                </Row>
-                            </Link>
-                        </Col>
-                        <Col xl='2' sm="5" xs='10' className="cards" style={{ backgroundColor: getRandomColor() }}>
-                            <Link to="/question-detail" style={{ textDecoration: 'none' }}>
-                                    <Row className="title">
-                                        <Col >
-                                                <p>Question 1</p>
-                                        </Col>
-                                    </Row>
-                                    <Row className="card-footer">
-                                        <Col xl='6' sm='6' xs='6'>
-                                            <p>Như Nguyên</p>
-                                        </Col>
-                                        <Col xl='6' sm='6' xs='6' className="date"><p>dd/mm/yyyy</p></Col>
-                                    </Row>
-                            </Link>
-                        </Col>
-                        <Col xl='2' sm="5" xs='10' className="cards" style={{ backgroundColor: getRandomColor() }}>
-                            <Link to="/question-detail" style={{ textDecoration: 'none' }}>
-                                    <Row className="title">
-                                        <Col >
-                                                <p>Question 1</p>
-                                        </Col>
-                                    </Row>
-                                    <Row className="card-footer">
-                                        <Col xl='6' sm='6' xs='6'>
-                                            <p>Như Nguyên</p>
-                                        </Col>
-                                        <Col xl='6' sm='6' xs='6' className="date"><p>dd/mm/yyyy</p></Col>
-                                    </Row>
-                                </Link>
-                        </Col>
-                    </Row>
+  useEffect(() => {
+    fetch(GET_USER_QUESTION)
+      .then((response) => response.json())
+      .then((data) => {
+        setPosts(data);
+      })
+      .catch((error) => console.error("Error fetching posts:", error));
+  }, [selectedUser]);
 
-                </div>
-
-            </div>
-
-            <Footer />
-
-        </div>
-    );
-
-    function getRandomColor() {
-        const colors = ["#79b7e4", "#5aff5a", "#f7f75f", "#f9ce4d", "#9662f7"];
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        return colors[randomIndex];
+  const handlePostClick = (postId) => {
+    if (selectedUser && selectedUser.role === "admin") {
+      navigate(`/question-admin/${postId}`);
+    } else {
+      navigate(`/question-detail/${postId}`);
     }
+  };
+
+  // Lọc bài viết dựa trên từ khóa tìm kiếm
+  const filteredPosts = posts.filter((post) =>
+    post.header.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div>
+      <Header onSearch={setSearchTerm} />
+
+      <div className="home-page">
+        {selectedUser && selectedUser.role !== "admin" && (
+          <div className="btn-fn">
+            <Link to="/add-question">
+              <button>Add Question</button>
+            </Link>
+            <Link to="/my-questions">
+              <button>My Questions</button>
+            </Link>
+          </div>
+        )}
+        <div className="items-Question">
+          <Row>
+            {filteredPosts.map((post) => (
+              <Col
+                key={post.id}
+                xl="2"
+                sm="5"
+                xs="10"
+                className="cards"
+                style={{ backgroundColor: getRandomColor() }}
+              >
+                <div
+                  onClick={() => handlePostClick(post.id)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <Row className="title">
+                    <Col>
+                      <p>{post.header}</p>
+                    </Col>
+                  </Row>
+                  <Row className="card-footer">
+                    <Col xl="6" sm="6" xs="6">
+                      <p>{post.full_name || "Unknown Author"}</p>
+                    </Col>
+                    <Col xl="6" sm="6" xs="6" className="date">
+                      <p>{new Date(post.createAt).toLocaleDateString()}</p>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
+  );
+
+  function getRandomColor() {
+    const colors = ["#79b7e4", "#5aff5a", "#f7f75f", "#f9ce4d", "#9662f7"];
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+  }
 }
