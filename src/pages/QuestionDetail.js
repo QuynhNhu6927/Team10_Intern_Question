@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrash, faSave, faArrowCircleLeft, faFileText, faCommentDots } from '@fortawesome/free-solid-svg-icons';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../assets/css/questionDetail.css";
@@ -153,13 +155,13 @@ export default function QuestionDetail() {
             className={selectedButton === "question" ? "selected" : ""}
             onClick={() => setSelectedButton("question")}
           >
-            Câu Hỏi
+            <FontAwesomeIcon icon={faFileText} />
           </button>
           <button
             className={selectedButton === "answer" ? "selected" : ""}
             onClick={() => setSelectedButton("answer")}
           >
-            Trả Lời
+            <FontAwesomeIcon icon={faCommentDots} />
           </button>
         </div>
 
@@ -217,19 +219,19 @@ export default function QuestionDetail() {
             </div>
           </div>
         )}
-        <div className="update-question-button">
+        <div className="update-question-button-icon">
           {isUserQuestion && (
             <>
               {!isEditing ? (
-                <button onClick={() => setIsEditing(true)}>Sửa</button>
+                <button onClick={() => setIsEditing(true)}><FontAwesomeIcon icon={faEdit} /></button>
               ) : (
-                <button onClick={handleSaveQuestion}>Lưu</button>
+                <button onClick={handleSaveQuestion}><FontAwesomeIcon icon={faSave} /></button>
               )}
-              <button onClick={handleOpenDialog}>Xóa</button>
+              <button onClick={handleOpenDialog}><FontAwesomeIcon icon={faTrash} /></button>
             </>
           )}
           <Link to={routes.homePage}>
-            <button>Quay lại</button>
+            <button><FontAwesomeIcon icon={faArrowCircleLeft} /></button>
           </Link>
         </div>
         {error && <div className="error-message">{error}</div>}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane, faTrash, faFileText, faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -82,7 +82,7 @@ export default function QuestionDetailAdmin() {
       const response = await axios.delete(DELETE_POST(id));
       if (response.status === 200) {
         toast.success("Xóa câu hỏi thành công!");
-        navigate(routes.homePage); 
+        navigate(routes.homePage);
       } else {
         toast.error("Lỗi khi xóa câu hỏi.");
       }
@@ -145,13 +145,13 @@ export default function QuestionDetailAdmin() {
             className={selectedButton === "question" ? "selected" : ""}
             onClick={() => setSelectedButton("question")}
           >
-            Câu Hỏi
+            <FontAwesomeIcon icon={faFileText} />
           </button>
           <button
             className={selectedButton === "answer" ? "selected" : ""}
             onClick={() => setSelectedButton("answer")}
           >
-            Trả Lời
+            <FontAwesomeIcon icon={faCommentDots} />
           </button>
 
         </div>
@@ -213,12 +213,17 @@ export default function QuestionDetailAdmin() {
           <Button
             style={{
               color: 'black',
+              width: '45px',
+              height: '45px',
+              border: '2px solid #7DACCE',
+              borderRadius: '50px',
+              transition: 'opacity 0.3s, visibility 0.3s'
             }}
             variant="contained"
             onClick={handleClickOpen}
             sx={{ textTransform: 'none' }}
           >
-            Xóa
+            <FontAwesomeIcon icon={faTrash} />
           </Button>
 
           <Dialog
@@ -264,6 +269,6 @@ export default function QuestionDetailAdmin() {
         </div>
       </div>
       <Footer />
-    </div>
+    </div >
   );
 }

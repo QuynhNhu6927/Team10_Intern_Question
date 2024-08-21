@@ -15,16 +15,14 @@ const RequireAdmin = (WrappedComponent) => {
         useEffect(() => {
             const user = JSON.parse(sessionStorage.getItem("selectedUser") || "{}");
 
-            if (user.role !== "admin" || !user) {
-                alert("Bạn không có quyền truy cập vào trang này.");
-                navigate("/");
-                return;
+            if (!user || user.role !== "admin") {
+                setOpen(true); // Open the dialog if the user is not an admin or if user data is missing
             }
         }, [navigate]);
 
         const handleClose = () => {
             setOpen(false);
-            navigate("/"); // Redirect to the homepage
+            navigate("/");
         };
 
         const buttonStyle = {
@@ -39,10 +37,10 @@ const RequireAdmin = (WrappedComponent) => {
                     open={open}
                     onClose={handleClose}
                     BackdropProps={{
-                        style: { backgroundColor: "rgba(255, 255, 255, 1)" }  // Opaque white background
+                        style: { backgroundColor: "rgba(255, 255, 255, 1)" }  
                     }}
                     PaperProps={{
-                        style: { zIndex: 1400 }  // Ensure the dialog is on top
+                        style: { zIndex: 1400 } 
                     }}
                 >
                     <DialogTitle 

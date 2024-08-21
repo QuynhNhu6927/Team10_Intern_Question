@@ -27,40 +27,46 @@ export default function Footer() {
 
 
     return (
-        <footer 
-        style={{ 
-            backgroundColor:'#BDE3FF',
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '20px 0 20px 0'}}>
+        <footer
+            style={{
+                backgroundColor: '#BDE3FF',
+                display: 'flex',
+                justifyContent: 'center',
+                padding: '20px 0 20px 0'
+            }}>
             <div>
-                <div className="company-logo" 
-                style={{ 
-                    marginBottom: '10px', 
-                    display: 'flex', 
-                    justifyContent: 'center'}}>
+                <div className="company-logo"
+                    style={{
+                        marginBottom: '10px',
+                        display: 'flex',
+                        justifyContent: 'center'
+                    }}>
                     <img src="/assets/images/logo.png" alt="logo" />
                 </div>
                 <div className="company-logo">
                     © 2023 Amazing Tech. All Rights Reserved.
                 </div>
             </div>
-            <div 
-            style={{
-                position: 'fixed',
-                right: '50px',
-                bottom: '80px',
-                fontSize: '30px',
-                backgroundColor: '#7DACCE',
-                height: '50px',
-                width: '50px',
-                borderRadius: '50%',
-                display: showButton ? 'flex' : 'none',
-                justifyContent: 'center',
-                alignItems: 'center',
-                cursor: 'pointer'
-            }}
-            ><FontAwesomeIcon icon={faAngleUp} onClick={handleScrollToTop} ></FontAwesomeIcon></div>
+            <div
+                style={{
+                    position: 'fixed',
+                    right: '0px',
+                    bottom: '0px',
+                    fontSize: '30px',
+                    backgroundColor: '#7DACCE',
+                    height: '35px',
+                    width: '30px',
+                    display: showButton ? 'flex' : 'none',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer'
+                }}
+            >
+                <FontAwesomeIcon
+                    icon={faAngleUp}
+                    onClick={handleScrollToTop} >
+                </FontAwesomeIcon>
+            </div>
         </footer>
     );
 }

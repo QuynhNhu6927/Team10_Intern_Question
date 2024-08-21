@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { routes } from "../routes";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { GET_USER_QUESTION } from "../api/api"; // Đảm bảo rằng GET_USER_QUESTION là URL API đúng
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -9,6 +11,7 @@ export default function MyQuestions() {
   const [selectedUser, setSelectedUser] = useState(null);
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); 
+  const [selectedButton, setSelectedButton] = useState("mine");
 
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem("selectedUser"));
@@ -41,13 +44,30 @@ export default function MyQuestions() {
       <div className="home-page">
         {selectedUser && selectedUser.role !== "admin" && (
           <div className="btn-fn">
-            <Link to={routes.addQuestion}>
-              <button>Thêm Câu Hỏi</button>
+          <div className="btn-homepage">
+            <Link to={routes.homePage}>
+              <button
+                className={selectedButton === "all" ? "selected" : ""}
+                onClick={() => setSelectedButton("all")}
+              >
+                Tất Cả
+              </button>
             </Link>
             <Link to={routes.myquestion}>
-              <button>Câu Hỏi Của Tôi</button>
+              <button
+                className={selectedButton === "mine" ? "selected" : ""}
+                onClick={() => setSelectedButton("mine")}
+              >
+                Của Tôi
+              </button>
             </Link>
           </div>
+          <div div className="btn-homepage-add">
+            <Link to={routes.addQuestion} >
+              <button><FontAwesomeIcon icon={faPlus} /></button>
+            </Link>
+          </div>
+        </div>
         )}
         <div className="items-Question">
           <Row>
@@ -61,10 +81,10 @@ export default function MyQuestions() {
                   className="cards"
                   style={{ backgroundColor: getRandomColor() }}
                 >
-                  <Link to={`/question-detail/${post.id}`}>
+                  <Link to={`/question-detail/${post.id}`} style={{textDecoration:'none', color: 'black'}}>
                     <Row className="title">
                       <Col>
-                        <p>{post.header}</p>
+                        <strong>{post.header}</strong>
                       </Col>
                     </Row>
                     <Row className="card-footer">
@@ -79,7 +99,7 @@ export default function MyQuestions() {
                 </Col>
               ))
             ) : (
-              <p>No questions available.</p>
+              <p>Bạn chưa gửi câu hỏi nào</p>
             )}
           </Row>
         </div>

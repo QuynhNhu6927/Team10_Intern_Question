@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { routes } from "../routes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Header from "../components/Header";
 import { Col, Row } from "react-bootstrap";
 import "../assets/css/HomePage.css";
@@ -12,6 +14,7 @@ export default function HomePage() {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState(""); // Thêm state để quản lý từ khóa tìm kiếm
+  const [selectedButton, setSelectedButton] = useState("all");
 
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem("selectedUser"));
@@ -47,12 +50,29 @@ export default function HomePage() {
       <div className="home-page">
         {selectedUser && selectedUser.role !== "admin" && (
           <div className="btn-fn">
-            <Link to={routes.addQuestion}>
-              <button>Thêm Câu Hỏi</button>
-            </Link>
-            <Link to={routes.myquestion}>
-              <button>Câu Hỏi Của Tôi</button>
-            </Link>
+            <div className="btn-homepage">
+              <Link to={routes.homePage}>
+                <button
+                  className={selectedButton === "all" ? "selected" : ""}
+                  onClick={() => setSelectedButton("all")}
+                >
+                  Tất Cả
+                </button>
+              </Link>
+              <Link to={routes.myquestion}>
+                <button
+                  className={selectedButton === "mine" ? "selected" : ""}
+                  onClick={() => setSelectedButton("mine")}
+                >
+                  Của Tôi
+                </button>
+              </Link>
+            </div>
+            <div div className="btn-homepage-add">
+              <Link to={routes.addQuestion} >
+                <button><FontAwesomeIcon icon={faPlus} /></button>
+              </Link>
+            </div>
           </div>
         )}
         <div className="items-Question">
@@ -72,7 +92,7 @@ export default function HomePage() {
                 >
                   <Row className="title">
                     <Col>
-                      <p>{post.header}</p>
+                      <strong>{post.header}</strong>
                     </Col>
                   </Row>
                   <Row className="card-footer">

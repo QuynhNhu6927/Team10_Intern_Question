@@ -1,6 +1,8 @@
 import { routes } from "../routes";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, useRef, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../assets/css/addQuestion.css";
@@ -55,12 +57,12 @@ export default function AddQuestion() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        toast.success("Thêm câu hỏi thành công!");
+        toast.success("Gửi câu hỏi thành công!");
         navigate(routes.homePage); 
       })
       .catch((error) => {
         console.error("Error adding question:", error);
-        toast.error("Thêm câu hỏi thất bại!");
+        toast.error("Gửi câu hỏi thất bại!");
       });
   };
 
@@ -102,10 +104,10 @@ export default function AddQuestion() {
         {error && <div className="error-message">{error}</div>}{" "}
         {/* Hiển thị thông báo lỗi */}
         <div className="addquestion-button">
-          <button onClick={handleAddQuestion}>Thêm</button>
+          <button onClick={handleAddQuestion}><FontAwesomeIcon icon={faPlus} /></button>
 
           <Link to={routes.homePage}>
-            <button>Hủy</button>
+            <button><FontAwesomeIcon icon={faArrowCircleLeft} /></button>
           </Link>
         </div>
       </div>

@@ -1,32 +1,64 @@
+.btn-fn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-homepage{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-homepage button{
+    font-weight: 600;
+    margin-right: 10px;
+    margin-top: 17px;
+    background-color: white;
+    width: 100px;
+    height: 40px;
+    border-bottom: none;
+    border-left: 3px solid #BDE3FF;
+    border-right: 3px solid #BDE3FF;
+    border-top: 3px solid #BDE3FF;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.btn-homepage .selected{
+    background-color: #BDE3FF;
+}
+
+.btn-homepage button:hover,
+.btn-homepage-add button:hover {
+    background-color: #BDE3FF;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.btn-homepage-add{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-homepage-add button{
+    margin-top: 17px;
+    background-color: white;
+    width: 70px;
+    height: 40px;
+    border-bottom: none;
+    border-left: 3px solid #BDE3FF;
+    border-right: 3px solid #BDE3FF;
+    border-top: 3px solid #BDE3FF;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
 .home-page{
     padding: 50px 30px 70px 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
 }
 
-.btn-fn{
-    text-align: center;
-    /* padding: 0px 0px; */
-}
-
-.btn-fn button{
-    margin: 0 30px;
-    padding: 0 20px;
-    background-color: #BDE3FF;
-    font-size: 20px;
-    margin-top: 50px;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: opacity 0.3s, visibility 0.3s;
-}
-.btn-fn button:hover{
-    background-color: #7DACCE;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: opacity 0.3s, visibility 0.3s;
-}
 .items-Question{
-    margin-top: 50px;
     border: 17px solid #BDE3FF; 
     min-height: 500px;
     padding: 20px;
