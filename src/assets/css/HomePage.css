@@ -39,7 +39,10 @@
     margin-left: 50px;
     margin-bottom: 50px;
     cursor: pointer;
-
+    transition: box-shadow 0.2s;
+}
+.cards:hover{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 .cards .title{
     min-height: 240px;
