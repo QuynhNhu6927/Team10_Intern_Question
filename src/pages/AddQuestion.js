@@ -26,11 +26,11 @@ export default function AddQuestion() {
   const handleAddQuestion = () => {
     // Kiểm tra dữ liệu trước khi gửi
     if (!title.trim()) {
-      toast.error("Vui lòng nhập tiêu đề !");
+      toast.error("Vui lòng nhập tiêu đề!");
       return;
     }
     if (!content.trim()) {
-      toast.error("Vui lòng nhập nội dung !");
+      toast.error("Vui lòng nhập nội dung!");
       return;
     }
 
@@ -55,11 +55,12 @@ export default function AddQuestion() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        toast.success("Thêm câu hỏi thành công !");
+        toast.success("Thêm câu hỏi thành công!");
         navigate(routes.homePage); 
       })
       .catch((error) => {
         console.error("Error adding question:", error);
+        toast.error("Thêm câu hỏi thất bại!");
       });
   };
 
@@ -71,7 +72,7 @@ export default function AddQuestion() {
           <div className="addquestion-title">
             <input
               type="text"
-              placeholder="Tiêu đề câu hỏi"
+              placeholder="Tiêu đề"
               ref={titleInputRef}
               value={title}
               onChange={(e) => {
@@ -101,10 +102,10 @@ export default function AddQuestion() {
         {error && <div className="error-message">{error}</div>}{" "}
         {/* Hiển thị thông báo lỗi */}
         <div className="addquestion-button">
-          <button onClick={handleAddQuestion}>Add</button>
+          <button onClick={handleAddQuestion}>Thêm</button>
 
           <Link to={routes.homePage}>
-            <button>Cancel</button>
+            <button>Hủy</button>
           </Link>
         </div>
       </div>

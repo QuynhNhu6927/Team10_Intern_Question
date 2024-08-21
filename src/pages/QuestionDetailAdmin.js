@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -10,6 +12,15 @@ import { routes } from "../routes";
 import { GET_QUESTION_DETAIL, POST_ANSWERS } from "../api/api";
 import { GET_ANSWERS_DETAIL_BY_ID_QUESTION } from "../api/api";
 import { DELETE_POST } from "../api/api";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Button,
+  Typography,
+} from "@mui/material";
 
 export default function QuestionDetailAdmin() {
   const { id } = useParams();
@@ -21,13 +32,13 @@ export default function QuestionDetailAdmin() {
   const [answers, setAnswers] = useState([]);
   const answersPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState(""); 
+  const [searchTerm, setSearchTerm] = useState("");
   const [answerContent, setAnswerContent] = useState("");
   const [authorId, setAuthorId] = useState(3);
   const [postId, setPostId] = useState(id);
+  const [open, setOpen] = useState(false);
 
   const handleAddAnswer = async () => {
-
     if (answerContent.trim() === "") {
       toast.error("Vui lòng trả lời trước khi gửi !");
       return;
@@ -44,36 +55,42 @@ export default function QuestionDetailAdmin() {
           id: authorId,
         },
       });
+
+      const newAnswer = {
+        content: answerContent,
+        createAt: new Date().toISOString(),
+      };
+
+      setAnswers((prevAnswers) => [newAnswer, ...prevAnswers]);
       setAnswerContent("");
       toast.success("Thêm câu trả lời thành công!");
-      setTimeout(() => {
-        setAnswerContent(""); 
-        window.location.reload(); 
-      }, 2000);
-      // navigate(routes.QuestionDetailAdmin); 
+
     } catch (error) {
       console.error("Error adding answer:", error);
     }
   };
-  const handleDeletePost = async () => {
-    const confirmDelete = window.confirm(
-      "Bạn có chắc chắn muốn xóa câu hỏi này không?"
-    );
-    if (!confirmDelete) {
-      return;
-    }
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleDeletePost = async () => {
     try {
       const response = await axios.delete(DELETE_POST(id));
       if (response.status === 200) {
         toast.success("Xóa câu hỏi thành công!");
-        navigate("/"); // Chuyển hướng về HomePage
+        navigate(routes.homePage); 
       } else {
         toast.error("Lỗi khi xóa câu hỏi.");
       }
     } catch (error) {
       toast.error("Lỗi khi xóa câu hỏi.");
       console.error("Error deleting post:", error);
+    } finally {
+      setOpen(false);
     }
   };
   useEffect(() => {
@@ -121,24 +138,22 @@ export default function QuestionDetailAdmin() {
 
   return (
     <div>
-        <Header onSearch={setSearchTerm} />
+      <Header onSearch={setSearchTerm} />
       <div className="question-detail">
         <div className="question-button">
           <button
             className={selectedButton === "question" ? "selected" : ""}
             onClick={() => setSelectedButton("question")}
           >
-            Question
+            Câu Hỏi
           </button>
           <button
             className={selectedButton === "answer" ? "selected" : ""}
             onClick={() => setSelectedButton("answer")}
           >
-            Answer
+            Trả Lời
           </button>
-          <button className="delete" onClick={handleDeletePost}>
-            Delete
-          </button>
+
         </div>
 
         {selectedButton === "question" && (
@@ -151,7 +166,7 @@ export default function QuestionDetailAdmin() {
               {new Date(question.createAt).toLocaleDateString()}
             </div>
 
-            <div className="question-content">{question.content}</div>
+            <div className="question-content"><textarea value={question.content} /></div>
           </div>
         )}
 
@@ -159,16 +174,16 @@ export default function QuestionDetailAdmin() {
           <div className="answer-box">
             <div className="answer-add-box">
               <div className="answer-add">
-                <input
-                  type="textarea"
-                  placeholder="Type your answer here"
+                <textarea
+                  placeholder="Nhập câu trả lời"
+                  rows="4"
                   className="answer-note-input"
                   value={answerContent}
                   onChange={(e) => setAnswerContent(e.target.value)}
                 />
               </div>
               <button className="answer-add-button" onClick={handleAddAnswer}>
-                Add Answer
+                <FontAwesomeIcon icon={faPaperPlane} className="answer-icon" />
               </button>
             </div>
             {currentAnswers.map((answer, index) => (
@@ -184,9 +199,8 @@ export default function QuestionDetailAdmin() {
               {Array.from({ length: totalPages }, (_, index) => (
                 <button
                   key={index + 1}
-                  className={`pagination-button ${
-                    currentPage === index + 1 ? "active" : ""
-                  }`}
+                  className={`pagination-button ${currentPage === index + 1 ? "active" : ""
+                    }`}
                   onClick={() => handlePageChange(index + 1)}
                 >
                   {index + 1}
@@ -195,6 +209,59 @@ export default function QuestionDetailAdmin() {
             </div>
           </div>
         )}
+        <div className="update-question-button">
+          <Button
+            style={{
+              color: 'black',
+            }}
+            variant="contained"
+            onClick={handleClickOpen}
+            sx={{ textTransform: 'none' }}
+          >
+            Xóa
+          </Button>
+
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title" style={{
+              backgroundColor: '#BDE3FF',
+              fontWeight: 'bold',
+              display: 'flex',
+              justifyContent: 'center',
+            }}>
+              {"Xác nhận xóa câu hỏi"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description"
+                style={{ paddingTop: '10px', color: 'black' }}>
+                Hành động này không thể hoàn tác!
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}
+                style={{
+                  backgroundColor: "#BDE3FF",
+                  color: "black",
+                }}
+                onMouseEnter={(e) => (e.target.style.backgroundColor = "#7DACCE")}
+                onMouseLeave={(e) => (e.target.style.backgroundColor = "#BDE3FF")}>
+                Hủy
+              </Button>
+              <Button onClick={handleDeletePost} style={{
+                backgroundColor: "#BDE3FF",
+                color: "black",
+              }}
+                onMouseEnter={(e) => (e.target.style.backgroundColor = "#7DACCE")}
+                onMouseLeave={(e) => (e.target.style.backgroundColor = "#BDE3FF")}>
+                Xóa
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
       </div>
       <Footer />
     </div>

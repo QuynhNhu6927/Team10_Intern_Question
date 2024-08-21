@@ -60,11 +60,11 @@ export default function DropdownMenu() {
         ))}
         {selectedUser ? (
           <Dropdown.Item as={Link} to="/logout" onClick={handleLogout}>
-            Logout
+            Đăng xuất
           </Dropdown.Item>
         ) : (
           <Dropdown.Item as={Link} to="/login">
-            Login
+            Đăng nhập
           </Dropdown.Item>
         )}
       </Dropdown.Menu>
