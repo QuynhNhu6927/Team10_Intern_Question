@@ -8,7 +8,8 @@ import QuestionDetail from "../pages/QuestionDetail";
 import AddQuestion from "../pages/AddQuestion";
 import QuestionDetailAdmin from "../pages/QuestionDetailAdmin";
 import MyQuestions from "../pages/MyQuestion";
-
+import RequireAdmin from "../util/RequestAdmin";
+const AdminQuestionDetail = RequireAdmin(QuestionDetailAdmin)
 const ScrollToTop = () => {
     const { pathname } = useLocation();
 
@@ -30,7 +31,7 @@ export default function AppRoute() {
                 <Route path={routes.myquestion}element={<MyQuestions />} />
                 <Route path={routes.questionDetail} element={<QuestionDetail />} />
                 <Route path={routes.addQuestion} element={<AddQuestion />} />
-                <Route path={routes.addQuestionAdmin} element={<QuestionDetailAdmin />} />
+                <Route path={routes.addQuestionAdmin} element={<AdminQuestionDetail />} />
             </Routes>
         </>
     );
