@@ -16,7 +16,9 @@ const RequireAdmin = (WrappedComponent) => {
             const user = JSON.parse(sessionStorage.getItem("selectedUser") || "{}");
 
             if (user.role !== "admin" || !user) {
-                setOpen(true);
+                alert("Bạn không có quyền truy cập vào trang này.");
+                navigate("/");
+                return;
             }
         }, [navigate]);
 
