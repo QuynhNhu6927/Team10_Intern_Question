@@ -1,38 +1,91 @@
-.delete {
-    margin-left: auto;
+.admin-question-button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0 0 0 17px;
+    background-color: #BDE3FF;
 }
-.answer-add{
-    margin-top: 7px;
-}
-.answer-add-box{
-    padding: 0px 20px 20px 20px;
-    border-bottom: 10px solid #BDE3FF; 
-    text-align: right;
-}
-.question-box{
-    padding: 30px 20px 20px 20px;
-}
-.answer-add-button{
-    margin-left: auto;
-    margin-top: 10px;
-    background-color: #BDE3FF ;
-    width: 150px;
-    height: 30px;
+
+.admin-question-button button {
+    margin-right: 20px;
+    background-color: #BDE3FF;
+    margin-top: 17px;
+    width: 90px;
+    height: 50px;
     border: 2px solid #7DACCE;
     border-radius: 10px;
     transition: opacity 0.3s, visibility 0.3s;
 }
-.answer-add-button:hover{
+
+.admin-question-button button:hover {
     background-color: #7DACCE;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: opacity 0.3s, visibility 0.3s;
 }
-.answer-note-input{
+
+.answer-add {
+    margin-top: 7px;
+}
+
+.answer-add-box {
+    padding: 0px 20px 20px 20px;
+    border-bottom: 10px solid #BDE3FF;
+    text-align: right;
+}
+
+.question-box {
+    padding: 30px 20px 20px 20px;
+}
+
+.answer-add-button {
+    margin-left: auto;
+    margin-top: 10px;
+    background-color: #BDE3FF;
+    border: 2px solid #7DACCE;
+    border-radius: 40px;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.answer-icon{
+    padding: 5px ;
+}
+
+.answer-add-button:hover {
+    background-color: #7DACCE;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.answer-note-input {
     width: 100%;
-    height: 100px;
+    resize: none;
+    overflow-y: auto;
     border: 3px solid #BDE3FF;
+    outline: #BDE3FF;
     border-radius: 10px;
     padding: 10px 20px 20px 10px;
     margin-top: 7px;
 }
 
+.fix-admin-question-button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    background-color: #BDE3FF;
+}
+
+.fix-admin-question-button button {
+    margin: 0 17px 20px 0;
+    background-color: #BDE3FF;
+    width: 80px;
+    height: 50px;
+    border: 2px solid #7DACCE;
+    border-radius: 10px;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.fix-admin-question-button button:hover {
+    background-color: #7DACCE;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s, visibility 0.3s;
+}

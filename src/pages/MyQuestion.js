@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { routes } from "../routes";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { GET_USER_QUESTION } from "../api/api"; // Đảm bảo rằng GET_USER_QUESTION là URL API đúng
@@ -40,11 +41,11 @@ export default function MyQuestions() {
       <div className="home-page">
         {selectedUser && selectedUser.role !== "admin" && (
           <div className="btn-fn">
-            <Link to="/add-question">
-              <button>Add Question</button>
+            <Link to={routes.addQuestion}>
+              <button>Thêm Câu Hỏi</button>
             </Link>
-            <Link to="/my-questions">
-              <button>My Questions</button>
+            <Link to={routes.myquestion}>
+              <button>Câu Hỏi Của Tôi</button>
             </Link>
           </div>
         )}

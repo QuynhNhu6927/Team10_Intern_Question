@@ -1,19 +1,22 @@
-import { routes } from "../routes";
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../assets/css/questionDetail.css";
 import { toast } from "react-toastify";
-
-import { GET_QUESTION_DETAIL, POST_ANSWERS } from "../api/api";
-import { GET_ANSWERS_DETAIL_BY_ID_QUESTION } from "../api/api";
-import { DELETE_POST } from "../api/api";
-import { UPDATE_QUESTION_DETAIL } from "../api/api";
-import { DELETE_QUESTION } from "../api/api";
-
-
-
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import {
+  GET_QUESTION_DETAIL,
+  POST_ANSWERS,
+  DELETE_QUESTION,
+  UPDATE_QUESTION_DETAIL,
+  GET_ANSWERS_DETAIL_BY_ID_QUESTION
+} from "../api/api";
+import { routes } from "../routes";
 
 export default function QuestionDetail() {
   const { id } = useParams();
@@ -28,18 +31,19 @@ export default function QuestionDetail() {
     content: "",
   });
 
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
+  const [openDialog, setOpenDialog] = useState(false); // State to control Dialog visibility
   const navigate = useNavigate();
 
   // QuestionDetail component
   const currentUser = JSON.parse(sessionStorage.getItem("selectedUser"));
   const currentUserId = currentUser ? currentUser.id : null;
-  const [searchTerm, setSearchTerm] = useState(""); 
+  const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
     fetch(GET_QUESTION_DETAIL(id))
       .then((response) => response.json())
       .then((data) => {
-        // console.log("Question detail data:", data);
         if (data.length > 0) {
           setQuestion(data[0]);
           setUpdatedQuestion({
@@ -58,7 +62,6 @@ export default function QuestionDetail() {
       fetch(GET_ANSWERS_DETAIL_BY_ID_QUESTION(id))
         .then((response) => response.json())
         .then((data) => {
-          // console.log("Answers detail data:", data);
           setAnswers(data);
         })
         .catch((error) =>
@@ -77,33 +80,39 @@ export default function QuestionDetail() {
     setCurrentPage(pageNumber);
   };
 
-  const handleDeleteQuestion = () => {
-    if (window.confirm("Bạn có muốn xóa câu hỏi không?")) {
-      fetch(DELETE_QUESTION(id), {
-        method: "DELETE",
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const handleConfirmDelete = () => {
+    fetch(DELETE_QUESTION(id), {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.ok) {
+          toast.success("Xóa câu hỏi thành công!");
+          navigate(routes.homePage);
+        } else {
+          toast.error("Xóa câu hỏi thất bại.");
+        }
       })
-        .then((response) => {
-          if (response.ok) {
-            toast.success("Xóa câu hỏi thành công!");
-            navigate(routes.homePage); // Điều hướng người dùng về trang chủ
-          } else {
-            toast.error("Xóa câu hỏi thất bại.");
-          }
-        })
-        .catch((error) => console.error("Error deleting question:", error));
-    }
+      .catch((error) => console.error("Error deleting question:", error))
+      .finally(() => handleCloseDialog());
   };
 
   const handleSaveQuestion = () => {
     if (!updatedQuestion.header.trim()) {
-      toast.error("Vui lòng nhập tiêu đề!")
+      toast.error("Vui lòng nhập tiêu đề!");
       return;
     }
     if (!updatedQuestion.content.trim()) {
-      toast.error("Vui lòng nhập nội dung câu hỏi!")
+      toast.error("Vui lòng nhập nội dung câu hỏi!");
       return;
     }
-
 
     fetch(UPDATE_QUESTION_DETAIL(id), {
       method: "PUT",
@@ -118,12 +127,11 @@ export default function QuestionDetail() {
     })
       .then((response) => {
         if (response.ok) {
-          toast.success("Cập nhật câu hỏi thành công !");
+          toast.success("Cập nhật câu hỏi thành công!");
           setIsEditing(false);
           setError("");
-         
         } else {
-          toast.error("Cập nhật câu hỏi thất bại !");
+          toast.error("Cập nhật câu hỏi thất bại!");
         }
       })
       .catch((error) => console.error("Error updating question:", error));
@@ -136,26 +144,22 @@ export default function QuestionDetail() {
   // Kiểm tra ID của người dùng hiện tại với ID của tác giả câu hỏi
   const isUserQuestion = question.author_Id === currentUserId;
 
-  // Debugging: Kiểm tra giá trị của currentUserId và question.author_Id
-  // console.log("Current User ID:", currentUserId);
-  // console.log("Author ID:", question.author_Id);
-
   return (
     <div>
-        <Header onSearch={setSearchTerm} />
+      <Header onSearch={setSearchTerm} />
       <div className="question-detail">
         <div className="question-button">
           <button
             className={selectedButton === "question" ? "selected" : ""}
             onClick={() => setSelectedButton("question")}
           >
-            Question
+            Câu Hỏi
           </button>
           <button
             className={selectedButton === "answer" ? "selected" : ""}
             onClick={() => setSelectedButton("answer")}
           >
-            Answer
+            Trả Lời
           </button>
         </div>
 
@@ -196,7 +200,7 @@ export default function QuestionDetail() {
                 <div className="answer-note">
                   {`Ngày:  ${new Date(answer.createAt).toLocaleDateString()}`}
                 </div>
-                <div className="answer-content">{answer.content}</div>
+                <div className="answer-detail">{answer.content}</div>
               </div>
             ))}
             <div className="pagination">
@@ -217,20 +221,70 @@ export default function QuestionDetail() {
           {isUserQuestion && (
             <>
               {!isEditing ? (
-                <button onClick={() => setIsEditing(true)}>Edit</button>
+                <button onClick={() => setIsEditing(true)}>Sửa</button>
               ) : (
-                <button onClick={handleSaveQuestion}>Save</button>
+                <button onClick={handleSaveQuestion}>Lưu</button>
               )}
-              <button onClick={handleDeleteQuestion}>Delete</button>
+              <button onClick={handleOpenDialog}>Xóa</button>
             </>
           )}
           <Link to={routes.homePage}>
-            <button>Cancel</button>
+            <button>Quay lại</button>
           </Link>
         </div>
-        {error && <div className="error-message">{error}</div>} 
+        {error && <div className="error-message">{error}</div>}
       </div>
       <Footer />
+
+      <Dialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        BackdropProps={{
+          style: {
+            backgroundColor: "rgba(255, 255, 255, 0.8)"
+          },
+        }}
+      >
+        <DialogTitle
+          style={{
+            backgroundColor: '#BDE3FF',
+            fontWeight: 'bold',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          Xác nhận xóa câu hỏi
+        </DialogTitle>
+        <DialogContent
+          style={{ paddingTop: '10px' }}
+        >
+          Hành động này không thể hoàn tác!
+        </DialogContent>
+        <DialogActions
+          style={{ color: "black" }}>
+          <Button
+            onClick={handleCloseDialog}
+            style={{
+              backgroundColor: "#BDE3FF",
+              color: "black",
+            }}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#7DACCE")}
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "#BDE3FF")}>
+            Hủy
+          </Button>
+          <Button
+            onClick={handleConfirmDelete}
+            style={{
+              backgroundColor: "#BDE3FF",
+              color: "black",
+            }}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#7DACCE")}
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "#BDE3FF")}
+          >
+            Xóa
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

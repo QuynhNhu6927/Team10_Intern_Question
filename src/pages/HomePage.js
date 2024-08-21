@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { routes } from "../routes";
 import Header from "../components/Header";
 import { Col, Row } from "react-bootstrap";
 import "../assets/css/HomePage.css";
@@ -46,11 +47,11 @@ export default function HomePage() {
       <div className="home-page">
         {selectedUser && selectedUser.role !== "admin" && (
           <div className="btn-fn">
-            <Link to="/add-question">
-              <button>Add Question</button>
+            <Link to={routes.addQuestion}>
+              <button>Thêm Câu Hỏi</button>
             </Link>
-            <Link to="/my-questions">
-              <button>My Questions</button>
+            <Link to={routes.myquestion}>
+              <button>Câu Hỏi Của Tôi</button>
             </Link>
           </div>
         )}

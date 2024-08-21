@@ -23,7 +23,7 @@ export default function Header({ onSearch }) {
             <img src="/assets/images/search_icon.png" alt="search logo" className="search-icon" />
             <input
               type="text"
-              placeholder="Finding question..."
+              placeholder="Tìm kiếm câu hỏi"
               onChange={(e) => onSearch(e.target.value)} // Truyền giá trị tìm kiếm lên `HomePage`
             />
           </div>
