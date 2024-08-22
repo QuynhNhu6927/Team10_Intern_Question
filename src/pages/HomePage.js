@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { routes } from "../routes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faCommentDots} from "@fortawesome/free-solid-svg-icons";
 import Header from "../components/Header";
 import { Col, Row } from "react-bootstrap";
 import "../assets/css/HomePage.css";
@@ -13,8 +13,10 @@ export default function HomePage() {
   const [selectedUser, setSelectedUser] = useState(null);
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState(""); // Thêm state để quản lý từ khóa tìm kiếm
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedButton, setSelectedButton] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 20;
 
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem("selectedUser"));
@@ -38,10 +40,20 @@ export default function HomePage() {
     }
   };
 
-  // Lọc bài viết dựa trên từ khóa tìm kiếm
   const filteredPosts = posts.filter((post) =>
     post.header.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scrolls to the top of the page
+  };
 
   return (
     <div>
@@ -68,16 +80,18 @@ export default function HomePage() {
                 </button>
               </Link>
             </div>
-            <div div className="btn-homepage-add">
-              <Link to={routes.addQuestion} >
-                <button><FontAwesomeIcon icon={faPlus} /></button>
+            <div className="btn-homepage-add">
+              <Link to={routes.addQuestion}>
+                <button>
+                  <FontAwesomeIcon icon={faPlus} />
+                </button>
               </Link>
             </div>
           </div>
         )}
         <div className="items-Question">
           <Row>
-            {filteredPosts.map((post) => (
+            {currentPosts.map((post) => (
               <Col
                 key={post.id}
                 xl="2"
@@ -93,6 +107,7 @@ export default function HomePage() {
                   <Row className="title">
                     <Col>
                       <strong>{post.header}</strong>
+                      <p style={{fontSize: '10px', marginTop:'30px'}}>{getRandomNumber()} <FontAwesomeIcon icon={faCommentDots}/> </p>
                     </Col>
                   </Row>
                   <Row className="card-footer">
@@ -107,6 +122,21 @@ export default function HomePage() {
               </Col>
             ))}
           </Row>
+
+          {/* Circular Pagination */}
+          <div className="pagination" style={{marginBottom: '20px'}}>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index + 1}
+                className={`pagination-button ${
+                  index + 1 === currentPage ? "active" : ""
+                }`}
+                onClick={() => paginate(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -115,8 +145,33 @@ export default function HomePage() {
   );
 
   function getRandomColor() {
-    const colors = ["#79b7e4", "#5aff5a", "#f7f75f", "#f9ce4d", "#9662f7"];
+    const colors = [
+      "#D5E8D4",
+      "#F5F5DC",
+      "#B0E0E6",
+      "#FFE4E1",
+      "#E6E6FA",
+      "#FADADD",
+      "#FFDAB9",
+      "#E2E8E2",
+      "#CFE2F3",
+      "#FFFDD0",
+    ];
     const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
+  }
+
+  function getRandomNumber() {
+    const numbers = [
+      "1",
+      "0",
+      "13",
+      "5",
+      "8",
+      "9",
+      "3",
+    ];
+    const randomIndex = Math.floor(Math.random() * numbers.length);
+    return numbers[randomIndex];
   }
 }

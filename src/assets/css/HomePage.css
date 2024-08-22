@@ -61,14 +61,14 @@
 .items-Question{
     border: 17px solid #BDE3FF; 
     min-height: 500px;
-    padding: 20px;
+    padding-top: 35px;
     text-align: center;
     
 }
 .cards{
     border-radius: 7px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin-left: 50px;
+    margin-left: 40px;
     margin-bottom: 50px;
     cursor: pointer;
     transition: box-shadow 0.2s;

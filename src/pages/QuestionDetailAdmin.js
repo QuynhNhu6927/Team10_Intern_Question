@@ -130,6 +130,7 @@ export default function QuestionDetailAdmin() {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scrolls to the top of the page
   };
 
   if (!question) {
